@@ -81,7 +81,16 @@ class ExtensionInstaller extends LibraryInstaller
 
         $this->io->write('    <fg=cyan>Installing</fg=cyan> into Joomla'.PHP_EOL);
 
-        if(!$this->_application->update($this->getInstallPath($package)))
+	    $db = JFactory::getDbo();
+	    $sql = "SELECT `extension_id`, `state` FROM `#__extensions`"
+		    ." WHERE `element` = ".$db->quote($element)." AND `type` = ".$db->quote($type);
+	    var_dump($sql);
+	    $extension = $db->setQuery($sql)->loadObject();
+	    var_dump($extension);
+	    die;
+	    //return ($extension && $extension->state != -1);
+
+        if(!$this->_application->install($this->getInstallPath($package)))
         {
             // Get all error messages that were stored in the message queue
             $descriptions = $this->_getApplicationMessages();
