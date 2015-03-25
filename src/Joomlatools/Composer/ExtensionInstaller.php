@@ -93,6 +93,8 @@ class ExtensionInstaller extends LibraryInstaller
 
 				throw new \RuntimeException($error);
 			}
+
+			return true;
 		}
 
 		parent::install($repo, $package);
