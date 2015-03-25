@@ -76,27 +76,6 @@ class ExtensionInstaller extends LibraryInstaller
 	 */
 	public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
 	{
-		if (self::isInstalled($repo, $package))
-		{
-			$this->io->write('    <fg=cyan>Updating</fg=cyan> Joomla extension' . PHP_EOL);
-
-			if (!$this->_application->update($this->getInstallPath($package)))
-			{
-				// Get all error messages that were stored in the message queue
-				$descriptions = $this->_getApplicationMessages();
-
-				$error = 'Error while updating ' . $package->getPrettyName();
-				if (count($descriptions))
-				{
-					$error .= ':' . PHP_EOL . implode(PHP_EOL, $descriptions);
-				}
-
-				throw new \RuntimeException($error);
-			}
-
-			return true;
-		}
-
 		parent::install($repo, $package);
 
 		$this->_setupExtmanSupport($package);
