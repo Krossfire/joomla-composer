@@ -132,7 +132,7 @@ class Application extends JApplicationCli
                 ." WHERE `element` = ".$db->quote($element)." AND `type` = ".$db->quote($type);
 var_dump($sql);
         $extension = $db->setQuery($sql)->loadObject();
-
+var_dump($extension);
         return ($extension && $extension->state != -1);
     }
 
