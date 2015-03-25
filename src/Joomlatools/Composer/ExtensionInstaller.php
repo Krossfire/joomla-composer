@@ -81,7 +81,7 @@ class ExtensionInstaller extends LibraryInstaller
 
         $this->io->write('    <fg=cyan>Installing</fg=cyan> into Joomla'.PHP_EOL);
 
-        if(!$this->_application->install($this->getInstallPath($package)))
+        if(!$this->_application->update($this->getInstallPath($package)))
         {
             // Get all error messages that were stored in the message queue
             $descriptions = $this->_getApplicationMessages();
