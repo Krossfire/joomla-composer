@@ -251,6 +251,9 @@ class ExtensionInstaller extends LibraryInstaller
                     }
                 }
                 break;
+            case 'template':
+		$element = strtolower((string) $manifest->name);
+		break;
             case 'component':
             default:
                 $element = strtolower((string) $manifest->name);
