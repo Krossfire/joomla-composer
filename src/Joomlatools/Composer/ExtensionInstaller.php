@@ -81,40 +81,6 @@ class ExtensionInstaller extends LibraryInstaller
 
         $this->io->write('    <fg=cyan>Installing</fg=cyan> into Joomla'.PHP_EOL);
 
-	    jimport('joomla.application.component.helper');
-	    jimport('joomla.application.menu');
-
-	    jimport('joomla.environment.uri');
-
-	    jimport('joomla.event.dispatcher');
-
-	    jimport('joomla.utilities.utility');
-	    jimport('joomla.utilities.arrayhelper');
-
-	    jimport('joomla.application.module.helper');
-
-	    // Tell JFactory where to find the current application object
-	    JFactory::$application = $this;
-
-	    // Start a new session and tell JFactory where to find it if we're on Joomla 3
-	    if(version_compare(JVERSION, '3.0.0', '>=')) {
-		    JFactory::$session = $this->_startSession();
-	    }
-
-	    // Load required languages
-	    $lang = JFactory::getLanguage();
-	    $lang->load('lib_joomla', JPATH_ADMINISTRATOR, null, true);
-	    $lang->load('com_installer', JPATH_ADMINISTRATOR, null, true);
-	    
-	    $db = JFactory::getDbo();
-	    $sql = "SELECT `extension_id`, `state` FROM `#__extensions`"
-		    ." WHERE `element` = ".$db->quote($element)." AND `type` = ".$db->quote($type);
-	    var_dump($sql);
-	    $extension = $db->setQuery($sql)->loadObject();
-	    var_dump($extension);
-	    die;
-	    //return ($extension && $extension->state != -1);
-
         if(!$this->_application->install($this->getInstallPath($package)))
         {
             // Get all error messages that were stored in the message queue
