@@ -76,7 +76,7 @@ class ExtensionInstaller extends LibraryInstaller
 	 */
 	public function install(InstalledRepositoryInterface $repo, PackageInterface $package)
 	{
-		if ($this->isInstalled($repo, $package))
+		if (self::isInstalled($repo, $package))
 		{
 			$this->io->write('    <fg=cyan>Updating</fg=cyan> Joomla extension' . PHP_EOL);
 
